@@ -103,3 +103,14 @@
 .container1 .info span .fa {
   color: #EF3B3A;
 }
+
+
+.alert.alert-danger {
+  width: 50%;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
+body {
+  background-image: url('../img/photoa.jpeg');
+}
