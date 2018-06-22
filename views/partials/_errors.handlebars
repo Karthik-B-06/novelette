@@ -1,0 +1,17 @@
+{{#if error}}
+  <div style="margin-left:260px; margin-right:260px;" align="center" class="alert alert-danger">
+    {{error}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  </div>
+{{/if}}
+{{#each errors}}
+  <div style="margin-left:260px; margin-right:260px;" align="center" class="alert alert-danger">
+    {{text}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  </div>
+  {{else}}
+{{/each}}
