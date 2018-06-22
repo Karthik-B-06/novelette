@@ -1,6 +1,6 @@
 if(process.env.NODE_ENV === 'production') {
   module.exports = {
-    mongoURI: 'mongodb://novelette-user:Hello,World@1@ds215961.mlab.com:15961/novelette-prod'
+    mongoURI: 'mongodb://novelette-user:karthik1@ds215961.mlab.com:15961/novelette-prod'
   }
 } else {
   module.exports = {
