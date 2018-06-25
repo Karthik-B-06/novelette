@@ -15,20 +15,21 @@
           <li class="nav-item">
             <a style="color:black" class="nav-link" href="/about">About</a>
           </li>
+          {{#if user}}          
+            <li class="nav-item">
+                <a style="color:black" class="nav-link" href="/stories/add">Add Story</a>
+            </li>
+            <li class="nav-item">
+                <a style="color:black" class="nav-link" href="/stories">Stories</a>
+            </li>
+          {{/if}}
         </ul>
 
         <ul class="navbar-nav ml-auto">
           {{#if user}}
-          <li class="nav-item dropdown">
-            <a style="color:black" href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink">Options</a>
-            <div class="dropdown-menu">
-              <a style="color:black" href="/stories" class="dropdown-item">Stories</a>
-              <a style="color:black" href="/stories/add" class="dropdown-item">Add Story</a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a style="color:black" class="nav-link" href="/users/logout">Logout</a>
-          </li>
+            <li class="nav-item">
+              <a style="color:black" class="nav-link" href="/users/logout">Logout</a>
+            </li>
           {{else}}
           <li class="nav-item">
             <a style="color:black" class="nav-link" href="/users/login">Login</a>
