@@ -5,11 +5,14 @@
     <h3 align="center" class="card-title">{{title}}</h3>
     <h2 align="right" class="class text-muted">By {{author}}</h2>
     <p class="lead">{{story}}</p> 
-    <a class="btn btn-info mb-3" href="/stories/edit/{{id}}">Edit</a>
-
-    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalCenter">
-      Delete
-    </button>
+    <div class="row">
+      <div class="col"><a class="btn btn-info mb-3" href="/stories/edit/{{id}}">Edit</a></div>
+      <div class="col">
+          <button style="float:right;" type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalCenter">
+            Delete
+          </button>
+    </div>
+    </div>
 
 <!-- Modal -->
 <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">

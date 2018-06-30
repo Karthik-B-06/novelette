@@ -16,8 +16,9 @@ router.get('/', ensureAuthenticated, (req, res)=>{
         res.render('stories/index',{
           stories: stories
         });
-    })
+    });
 });
+
 
 // Add Story Form
 router.get('/add', ensureAuthenticated, (req, res) => {
@@ -35,7 +36,7 @@ router.get('/edit/:id', (req, res) => {
       } else {
         res.render('stories/edit',{
           story: story
-        });
+        }); 
       }
       
     })

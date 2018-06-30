@@ -9,12 +9,19 @@ const methodOverride = require('method-override');
 const passport = require('passport');
 const app = express();
 
+const {ensureAuthenticated} = require('./helper/auth');
+
 // DB Config
 const db = require('./config/database');
 config = {
 PORT: process.env.PORT || 5000,
 MONGODB: db.mongoURI,
 }
+
+// For getting all stories
+require('./models/Story');
+const Story = mongoose.model('stories');
+
 
 // Load Routes
 const stories = require('./routers/stories');
@@ -79,6 +86,20 @@ app.set('view engine', 'handlebars');
 
 
 // For Home Page
+app.get('/home',ensureAuthenticated, (req, res) => {
+  const title = "Stories";
+  Story.find()
+    .sort({date: 'desc'})
+    .then(stories => {    
+        res.render('homepage',{
+          stories: stories,
+          title: title
+        });
+    });
+});
+
+
+//For Index Page
 app.get('/', (req, res) => {
     const title = "Welcome";
     res.render('index', {
@@ -93,4 +114,5 @@ app.get('/about', (req, res) => {
     title: title
   });
 })
+
 
