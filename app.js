@@ -14,7 +14,7 @@ const {ensureAuthenticated} = require('./helper/auth');
 // DB Config
 const db = require('./config/database');
 config = {
-PORT: process.env.PORT || 5000,
+PORT: process.env.PORT || 8000,
 MONGODB: db.mongoURI,
 }
 

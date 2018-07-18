@@ -2,13 +2,28 @@
 
 {{#each stories}}
 
-  <div class="card card-body">
-      <h3 align="center" class="card-title">{{title}}</h3>
+  <div class="container">
+    <div class="card card-body">
+      <h3 align="center" class="card-header">{{title}}</h3>
       <h2 align="right" class="class text-muted">By {{author}}</h2>
       <p class="lead">{{story}}</p>
+      <br>
+      <button class="like-button">
+        <span style="float:left;">
+          <i id={{_id}} onclick="myFunction(this)" class="fa fa-heart-o"></i>   
+        </span>
+      </button>
     </div>
-    </div>
-
+  <br/>
+  </div>
 {{else}}
   <h1 class="lead">No Stories Yet</h1>
 {{/each}}
+
+<script>
+function myFunction(x1) {
+  console.log(x1);
+    x1.classList.toggle("fa-gratipay");
+}
+
+</script>

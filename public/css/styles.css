@@ -1,0 +1,18 @@
+
+
+.like-button {
+  font-size: 23px;
+  appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    border: 0;
+    background: transparent;
+}
+
+.like-button:focus {
+  text-decoration: none;
+  outline: none;
+  box-shadow: solid 5px 5px 5px 5px
+}
+

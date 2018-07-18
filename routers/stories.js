@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require('mongoose')
 const {ensureAuthenticated} = require('../helper/auth');
+const uuidv1 = require('uuid/v1');
+
 module.exports = (router);
 
 //Load Story Model
@@ -19,6 +21,36 @@ router.get('/', ensureAuthenticated, (req, res)=>{
     });
 });
 
+// Like Story
+router.put('/like/:id', (req, res) => {
+  console.log(req.param.id)
+  Story.findOne({
+    _id : req.param.id
+  })
+  .then(story => {
+    console.log(story);
+    story.meta.votes++;
+    story.save()
+      .then(story => {
+        req.flash('success_msg', 'Liked');
+        res.redirect('/stories');
+      });
+  })
+});
+// Unlike Story
+router.put('/unlike/:id', (req, res) => {
+  Story.findOne({
+    _id : req.param.id
+  })
+  .then(story => {
+    story.meta.votes--;
+    story.save()
+      .then(story => {
+        req.flash('success_msg', 'UnLiked');
+        res.redirect('/stories');
+      });
+  })
+});
 
 // Add Story Form
 router.get('/add', ensureAuthenticated, (req, res) => {
@@ -55,7 +87,7 @@ router.put('/:id', (req, res)=> {
       .then(story => {
         req.flash('success_msg', 'Story Updated');
         res.redirect('/stories');
-      })
+      });
   })
 });
 
@@ -73,8 +105,7 @@ router.delete('/:id', (req, res) => {
 
 
 // Process Story Form
-router.post('/', ensureAuthenticated, (req, res) => {
-  console.log(req.body);
+router.post('/addStory', ensureAuthenticated, (req, res) => {
   const errors = [];
   if(!req.body.title) 
     errors.push('Please Enter A Title');
@@ -82,7 +113,6 @@ router.post('/', ensureAuthenticated, (req, res) => {
     errors.push('Please Enter Author Name');
   if(!req.body.story) 
     errors.push('Please Type in your Story');
-
   if(errors.length > 0) {
     res.render('stories/add', {
       errors: errors,
@@ -91,18 +121,19 @@ router.post('/', ensureAuthenticated, (req, res) => {
       story: req.body.story
     });
   }  else {
-    const newUser = {
+    const newStory = {
+      id: uuidv1(),
       title: req.body.title,
       author: req.body.author,
       story: req.body.story,
-      user: req.user.id
+      user: req.user._id
     }
-    new Story(newUser)
+    new Story(newStory)
         .save()
         .then(story => {
           req.flash('success_msg', 'Story Added');
-          res.redirect('stories');
-        })
+          res.redirect('/stories');
+        });
   }
   
 });
