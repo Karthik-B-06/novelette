@@ -1,13 +1,27 @@
 <div style="opacity:.9" class="container1">
   <div class="info">
     <h1 align="center" style="color:black" class="lead">Login</h1>
+  </div>
+  <div id="login" class="form">
+    <div class="thumbnail"><img src="/img/man.svg"/></div>
+    <form action="/users/login" method="POST">
+      <input id="name" type="email" name="email" placeholder="email" value="{{name}}" required/>
+      <input id="pass" type="password" name="password" placeholder="password" required/>
+      <button onclick="login()" type="submit">login</button>
+    </form>
+  </div>
+  <div style="display:none;" id="loader-6">
+          <div id="loader"></div>
+  </div>
 </div>
-<div class="form">
-  <div class="thumbnail"><img src="/img/man.svg"/></div>
-  <form action="/users/login" method="POST" class="login-form">
-    <input type="email" name="email" placeholder="email" value="{{name}}" required/>
-    <input type="password" name="password" placeholder="password" required/>
-    <button type="submit">login</button>
-  </form>
-</div>
-</div>
+
+<script>
+  function login() {
+    var name = document.getElementById('name');
+    var pass = document.getElementById('pass');
+    if(name.value !== '' && pass.value !== '') {
+      document.getElementById('loader-6').style.display = 'block';
+      document.getElementById('login').style.display = 'none';
+    }
+  }
+</script>
