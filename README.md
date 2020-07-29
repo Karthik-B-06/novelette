@@ -1,5 +1,3 @@
-# novelette
+## Novelette
+### An application to store your short stories.
 
-Try the App in [here]
-
-[here]: <https://novelette.herokuapp.com/>
